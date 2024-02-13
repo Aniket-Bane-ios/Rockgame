@@ -26,19 +26,35 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        linkdinImageView.isHidden = true
         resultLabelView.text = "Let's play!"
         resultLabelView.textColor = UIColor.systemIndigo
         resultImageView.image = UIImage(named: "logo")
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.onClicLabel(sender:)))
+               linkdinImageView.isUserInteractionEnabled = true
+               linkdinImageView.addGestureRecognizer(tap)
+        
     }
     
     @IBAction func onSubmitButtonClick(_ sender: UIButton) {
-        resultLabelView.isHidden = false
         let result = computer.playGame(userSelected) 
         changeUI(result ?? "")
     }
     
+    
+    @objc func onClicLabel(sender:UITapGestureRecognizer) {
+           openUrl(urlString: "https://www.linkedin.com/in/aniket-bane-ios")
+       }
+
+
+       private func openUrl(urlString:String!) {
+           let url = URL(string: urlString)!
+           if #available(iOS 10.0, *) {
+               UIApplication.shared.open(url, options: [:], completionHandler: nil)
+           } else {
+               UIApplication.shared.openURL(url)
+           }
+       }
     
     private func changeUI(_ result:String) {
         if (result == "You win for having the right guess.") {
