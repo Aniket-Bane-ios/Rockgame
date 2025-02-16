@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     
     
     @objc func onClicLabel(sender:UITapGestureRecognizer) {
-           openUrl(urlString: "https://www.linkedin.com/in/aniket-bane-ios")
+           openUrl(urlString: "https://www.linkedin.com/in/aniket-bane/")
        }
 
 
